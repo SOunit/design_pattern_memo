@@ -3,7 +3,7 @@
     rate: number;
   }
 
-  // follow OCP?
+  // follow OCP? follow SOLID principles?
   function calcTax(tax: ITax, amount: number): number {
     return amount * tax.rate;
   }
