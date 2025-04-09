@@ -1,29 +1,29 @@
 (function () {
-  interface ITax {
+  type Tax = {
     rate: number;
-  }
+  };
 
   interface ITaxCalculator {
-    calcTax(tax: ITax, amount: number): number;
+    calcTax(tax: Tax, amount: number): number;
   }
 
   // follow OCP?
   function calcTax(
     calculator: ITaxCalculator,
-    tax: ITax,
+    tax: Tax,
     amount: number
   ): number {
     return calculator.calcTax(tax, amount);
   }
 
   class GstTaxCalculator implements ITaxCalculator {
-    calcTax(tax: ITax, amount: number): number {
+    calcTax(tax: Tax, amount: number): number {
       return amount * tax.rate;
     }
   }
 
   class PstTaxCalculator implements ITaxCalculator {
-    calcTax(tax: ITax, amount: number): number {
+    calcTax(tax: Tax, amount: number): number {
       return amount * tax.rate;
     }
   }
