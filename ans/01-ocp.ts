@@ -7,6 +7,12 @@
     calcTax(tax: Tax, amount: number): number;
   }
 
+  abstract class BaseTaxCalculator implements ITaxCalculator {
+    calcTax(tax: Tax, amount: number): number {
+      return amount * tax.rate;
+    }
+  }
+
   // follow OCP?
   function calcTax(
     calculator: ITaxCalculator,
@@ -16,17 +22,9 @@
     return calculator.calcTax(tax, amount);
   }
 
-  class GstTaxCalculator implements ITaxCalculator {
-    calcTax(tax: Tax, amount: number): number {
-      return amount * tax.rate;
-    }
-  }
+  class GstTaxCalculator extends BaseTaxCalculator {}
 
-  class PstTaxCalculator implements ITaxCalculator {
-    calcTax(tax: Tax, amount: number): number {
-      return amount * tax.rate;
-    }
-  }
+  class PstTaxCalculator extends BaseTaxCalculator {}
 
   // from db
   const gstTax = {
